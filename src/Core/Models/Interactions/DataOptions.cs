@@ -11,7 +11,7 @@ public class DataOption
     public string Name { get; init; } = string.Empty;
 
     [JsonPropertyName("type")]
-    public CommandOptionTypes Type { get; init; }
+    public int Type { get; init; }
 
     [JsonPropertyName("value")]
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]

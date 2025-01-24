@@ -11,7 +11,7 @@ public static class HttpContextExtensions
 
     public static async Task<bool> ValidateRequestAsync(this HttpContext context)
     {
-        string publicKey = Environment.GetEnvironmentVariable("DISCORD_PUBLIC_KEY")
+        string publicKey = Environment.GetEnvironmentVariable("DISCORD_APP_PUBLIC_KEY")
             ?? string.Empty;
 
         context.Request.EnableBuffering();
@@ -76,7 +76,9 @@ public static class HttpContextExtensions
         ReadOnlySpan<byte> sig = hash.HexStringToByteSpan();
         Ed25519 alg = SignatureAlgorithm.Ed25519;
         PublicKey pk = PublicKey.Import(alg, pKey, KeyBlobFormat.RawPublicKey);
+        
         bool isValid = alg.Verify(pk, data, sig);
+        
         return isValid;
     }
 

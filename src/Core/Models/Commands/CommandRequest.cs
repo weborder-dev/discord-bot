@@ -10,7 +10,7 @@ public class CommandRequest
     public string Id { get; init; } = string.Empty;
 
     [JsonPropertyName("type")]
-    public CommandType Type { get; init; }
+    public int Type { get; init; }
 
     [JsonPropertyName("application_id")]
     public string ApplicationId { get; init; } = string.Empty;

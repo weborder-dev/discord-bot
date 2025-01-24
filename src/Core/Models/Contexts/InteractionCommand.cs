@@ -108,6 +108,12 @@ public class InteractionCommand
         };
     }
 
+    public T? GetParam<T>(string name)
+    {
+        Params.TryGetValue(name, out var value);
+        return (T?)value;
+    }
+
     #endregion
 
     #region Private Methods

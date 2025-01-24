@@ -8,7 +8,7 @@ public class EchoCommand : ICommandHandler
 {
     public bool CanHandle(InteractionContext context)
     {
-        return context.Command.Name == "Echo";
+        return context.Command.Name == "echo";
     }
 
     public async Task<DiscordResponse> HandleAsync(InteractionContext context)
@@ -18,7 +18,7 @@ public class EchoCommand : ICommandHandler
             Type = ResponseTypes.CHANNEL_MESSAGE_WITH_SOURCE,
             Data = new ResponseData
             {
-                Content = "Hello this is a test"
+                Content = context.Command.GetParam<string>("message")
             }
         };
 
