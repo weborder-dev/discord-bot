@@ -6,9 +6,8 @@ public static class SlashCommandBuilders
 {
     public static IEnumerable<SlashCommand> BuildCommands()
     {
-        return new List<SlashCommand>
-        {
-            new SlashCommand
+        return [
+            new()
             {
                 Name = "echo",
                 Description = "This is a sample echo command",
@@ -20,9 +19,15 @@ public static class SlashCommandBuilders
                         Name = "message",
                         Description = "The message to echo back",
                         Required = true
+                    },
+                    new()
+                    {
+                        Type = CommandOptionTypes.BOOLEAN,
+                        Name = "defer",
+                        Description = "True to send a defer message"
                     }
                 ]
             }
-        };
+        ];
     }
 }
