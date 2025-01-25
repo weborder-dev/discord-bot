@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\mzck5\\projects\\poc\\bots\\discord-bot\\src\\DiscordBot.csproj": {}
+    "C:\\Users\\mzck5\\projects\\poc\\bots\\discord-bot\\src\\DiscordBot.csproj": {}
   },
   "projects": {
-    "c:\\Users\\mzck5\\projects\\poc\\bots\\discord-bot\\src\\DiscordBot.csproj": {
+    "C:\\Users\\mzck5\\projects\\poc\\bots\\discord-bot\\src\\DiscordBot.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\mzck5\\projects\\poc\\bots\\discord-bot\\src\\DiscordBot.csproj",
+        "projectUniqueName": "C:\\Users\\mzck5\\projects\\poc\\bots\\discord-bot\\src\\DiscordBot.csproj",
         "projectName": "DiscordBot",
-        "projectPath": "c:\\Users\\mzck5\\projects\\poc\\bots\\discord-bot\\src\\DiscordBot.csproj",
+        "projectPath": "C:\\Users\\mzck5\\projects\\poc\\bots\\discord-bot\\src\\DiscordBot.csproj",
         "packagesPath": "C:\\Users\\mzck5\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\mzck5\\projects\\poc\\bots\\discord-bot\\src\\obj\\",
+        "outputPath": "C:\\Users\\mzck5\\projects\\poc\\bots\\discord-bot\\src\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

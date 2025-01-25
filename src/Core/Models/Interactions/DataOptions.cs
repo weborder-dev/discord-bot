@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using DiscordBot.Core.Models.Commands;
 
 namespace DiscordBot.Core.Models.Interactions;
 

@@ -111,6 +111,11 @@ public class InteractionCommand
     public T? GetParam<T>(string name)
     {
         Params.TryGetValue(name, out var value);
+        if (value is null)
+        {
+            return default;
+        }
+
         return (T?)value;
     }
 

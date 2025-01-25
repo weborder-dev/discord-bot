@@ -1,8 +1,5 @@
-
-using System.Text.Json;
 using DiscordBot.Core.Clients;
 using DiscordBot.Core.Models.Commands;
-using Microsoft.AspNetCore.Mvc;
 
 namespace DiscordBot.Core.Workers;
 
@@ -10,7 +7,8 @@ public class CommandInitializatonWorker : BackgroundService
 {
     #region Fields
 
-    private readonly IDiscordHttpClient _client;
+    private readonly IDiscordClient _client;
+    private readonly IEnumerable<SlashCommand> _commands;
     private readonly ILogger _logger;
 
     #endregion
@@ -18,9 +16,11 @@ public class CommandInitializatonWorker : BackgroundService
     #region Constructors
 
     public CommandInitializatonWorker(
-        IDiscordHttpClient client,
+        IEnumerable<SlashCommand> commands,
+        IDiscordClient client,
         ILogger<CommandInitializatonWorker> logger)
     {
+        _commands = commands;
         _client = client;
         _logger = logger;
     }
@@ -32,38 +32,19 @@ public class CommandInitializatonWorker : BackgroundService
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         var appId = Environment.GetEnvironmentVariable("DISCORD_APP_ID") ?? string.Empty;
-        var payload = BuildCreateCommand();
 
-        var response = await _client.CreateCommands(appId, payload);
-        if (!response.IsSuccessStatusCode)
+        foreach (var cmd in _commands)
         {
-            _logger.LogWarning(
-                "Unable to create/upsert command {err}",
-                response.Error.Content);
+            var response = await _client.CreateCommands(appId, cmd);
+            if (!response.IsSuccessStatusCode)
+            {
+                _logger.LogWarning(
+                    "Unable to create/upsert command {err}",
+                    response.Error.Content);
+            }
+            
+            _logger.LogInformation("Slash command {cn} created/updated", cmd.Name);
         }
-    }
-
-    protected CreateCommandRequest BuildCreateCommand()
-    {
-        var request =  new CreateCommandRequest
-        {
-            Name = "echo",
-            Description = "This is a sample echo command",
-            Options =
-            [
-                new()
-                {
-                    Type = CommandOptionTypes.STRING,
-                    Name = "message",
-                    Description = "The message to echo back",
-                    Required = true
-                }
-            ]
-        };
-
-        _logger.LogInformation("{req}", JsonSerializer.Serialize(request));
-
-        return request;
     }
 
     #endregion

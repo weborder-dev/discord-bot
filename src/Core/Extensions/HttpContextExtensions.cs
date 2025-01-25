@@ -1,4 +1,5 @@
 using System.Text.Json;
+using DiscordBot.Core.Clients;
 using DiscordBot.Core.Models.Contexts;
 using DiscordBot.Core.Models.Requests;
 using NSec.Cryptography;
@@ -34,11 +35,15 @@ public static class HttpContextExtensions
         var interaction = JsonSerializer.Deserialize<InteractionRequest>(payload)
             ?? throw new InvalidOperationException("Error in payload");
 
-        return new InteractionContext
+        var discordClient = context.RequestServices.GetRequiredService<IDiscordClient>();
+        var applicationId = Environment.GetEnvironmentVariable("DISCORD_APP_ID") 
+            ?? throw new ArgumentException("Environment vairable DISCORD_APP_ID not set");
+
+        return new InteractionContext(applicationId, discordClient)
         {
+            Id = interaction.Id,
             EventType = interaction.Type,
             ReplyToken = interaction.Token,
-            ReplyUrl = GetReplyUrl(interaction.Token),
             Channel = interaction.Channel,
             User = interaction.User,
             Command = InteractionCommand.CreateCommand(interaction)
@@ -89,17 +94,6 @@ public static class HttpContextExtensions
             return hash[9..];
         }
         return hash;
-    }
-
-    private static string GetReplyUrl(string token)
-    {
-        string discordUrl = Environment.GetEnvironmentVariable("DISCORD_API_URL")
-            ?? "https://discord.com/api/v10";
-
-        string applicationId = Environment.GetEnvironmentVariable("DISCORD_APPID")
-            ?? string.Empty;
-
-        return $"{discordUrl}/webhooks/{applicationId}/{token}/messages/@original";
     }
 
     #endregion

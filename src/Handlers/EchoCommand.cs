@@ -1,6 +1,6 @@
 using DiscordBot.Core.Abstractions;
+using DiscordBot.Core.Extensions;
 using DiscordBot.Core.Models.Contexts;
-using DiscordBot.Core.Models.Responses;
 
 namespace DiscordBot.Handlers;
 
@@ -11,17 +11,20 @@ public class EchoCommand : ICommandHandler
         return context.Command.Name == "echo";
     }
 
-    public async Task<DiscordResponse> HandleAsync(InteractionContext context)
+    public async Task<ICommandResult> HandleAsync(InteractionContext context)
     {
-        var response = new DiscordResponse
+        var msg = context.Command.GetParam<string>("message") ?? "No message provided";
+        var defer = context.Command.GetParam<bool>("defer");
+        
+        if (!defer)
         {
-            Type = ResponseTypes.CHANNEL_MESSAGE_WITH_SOURCE,
-            Data = new ResponseData
-            {
-                Content = context.Command.GetParam<string>("message")
-            }
-        };
+            return CommandResults.ReplyToChannel(msg);
+        }
 
-        return await Task.FromResult(response);
+        await context.ReplayToChannelDefered();
+        await Task.Delay(5000);
+        await context.ReplayWithFollowup(msg);
+
+        return  CommandResults.Success();
     }
 }

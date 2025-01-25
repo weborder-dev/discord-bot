@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace DiscordBot.Core.Models.Responses;
 
-public class ResponseData
+public class InteractionResponseData
 {
     #region Properties
 

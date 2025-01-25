@@ -1,9 +1,8 @@
 using System.Text.Json.Serialization;
-using DiscordBot.Core.Models.Commands;
 
-namespace DiscordBot.Core.Clients;
+namespace DiscordBot.Core.Models.Commands;
 
-public class CreateCommandRequest
+public class SlashCommand
 {
     #region Properties
 

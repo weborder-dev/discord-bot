@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cJxnWYxVZ20=",
+  "dgSpecHash": "ULewxDaTqJk=",
   "success": true,
-  "projectFilePath": "c:\\Users\\mzck5\\projects\\poc\\bots\\discord-bot\\src\\DiscordBot.csproj",
+  "projectFilePath": "C:\\Users\\mzck5\\projects\\poc\\bots\\discord-bot\\src\\DiscordBot.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mzck5\\.nuget\\packages\\libsodium\\1.0.19\\libsodium.1.0.19.nupkg.sha512",
     "C:\\Users\\mzck5\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",

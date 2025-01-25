@@ -7,7 +7,9 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7100",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DISCORD_APP_ID": "1332037805513113724",
+        "DISCORD_APP_PUBLIC_KEY": "17f664986b88feed56457a9d783f7b47cd18039bef10fcd2b72793252101e574",
       }
     }
   }
