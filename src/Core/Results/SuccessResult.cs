@@ -9,6 +9,7 @@ public class SuccessResult : ICommandResult
 
     public async Task ExecuteAsync(HttpContext httpContext)
     {
+        httpContext.Response.StatusCode = 200;
         await Task.CompletedTask;
     }
 

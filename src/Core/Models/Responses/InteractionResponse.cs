@@ -53,7 +53,10 @@ public class InteractionResponse
 
     public static InteractionResponse ReplayToChannelDefered()
     {
-        return ReplayToChannelDefered(string.Empty);
+        return new InteractionResponse
+        {
+            Type = InteractionResponseTypes.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE
+        };
     }
 
     #endregion
